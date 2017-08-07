@@ -1,7 +1,7 @@
 {
-  "name": "@unction/template",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@unction/attach",
+  "version": "1.0.3",
+  "description": "A polymorphic way to attach a value to an iterable",
   "keywords": [
     "unction",
     "functional"
@@ -45,6 +45,7 @@
     "tap": "10.3.3"
   },
   "dependencies": {
-    "ramda": "0.24.1"
+    "@unction/isarray": "^1.0.4",
+    "@unction/isobject": "^1.0.4"
   }
 }
