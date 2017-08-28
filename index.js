@@ -26,9 +26,6 @@ export default function attach (key: any): Function {
         case "Map": {
           throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
         }
-        case "WeakMap": {
-          throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
-        }
         default: {
           throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
         }
