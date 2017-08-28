@@ -1,7 +1,7 @@
 /* eslint-disable flowtype/require-parameter-type, flowtype/require-return-type, no-magic-numbers */
 import {test} from "tap"
 
-import attach from "./"
+import attach from "./index"
 
 test(({same, end}) => {
   same(
@@ -73,6 +73,30 @@ test(({same, end}) => {
   same(
     attach(1)("a")(""),
     "a"
+  )
+
+  end()
+})
+
+test(({throws, end}) => {
+  throws(
+    () => attach("aaa")("aaa")(new Map([["bbb", "bbb"], ["ccc", "ccc"]]))
+  )
+
+  end()
+})
+
+test(({throws, end}) => {
+  throws(
+      () => attach({aaa: "aaa"})("aaa")(new WeakMap([[{bbb: "bbb"}, "bbb"], [{ccc: "ccc"}, "ccc"]]))
+  )
+
+  end()
+})
+
+test(({throws, end}) => {
+  throws(
+      () => attach({aaa: "aaa"})("aaa")(1)
   )
 
   end()
