@@ -59,3 +59,21 @@ test(({same, end}) => {
 
   end()
 })
+
+test(({same, end}) => {
+  same(
+    attach(0)("a")("bc"),
+    "abc"
+  )
+
+  end()
+})
+
+test(({same, end}) => {
+  same(
+    attach(1)("a")(""),
+    "a"
+  )
+
+  end()
+})

@@ -1,7 +1,7 @@
 {
   "name": "@unction/attach",
   "version": "2.0.0",
-  "description": "A polymorphic way to attach a value to an iterable",
+  "description": "A polymorphic way to attach a value to the key on a keyed iterable",
   "keywords": [
     "unction",
     "functional"
@@ -18,6 +18,13 @@
   "repository": "github:unctionjs/tempLate",
   "bugs": "https://github.com/unctionjs/tempLate/issues",
   "main": "transpiled/source.js",
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "prepare": "flow-typed install",
@@ -51,14 +58,6 @@
     "tap": "10.3.4"
   },
   "dependencies": {
-    "@unction/isarray": "2.0.0",
-    "@unction/isobject": "2.0.0"
-  },
-  "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "sourceMap": false,
-    "instrument": false
+    "@unction/type": "2.0.0"
   }
 }
