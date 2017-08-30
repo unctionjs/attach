@@ -78,17 +78,10 @@ test(({same, end}) => {
   end()
 })
 
-test(({throws, end}) => {
-  throws(
-    () => attach("aaa")("aaa")(new Map([["bbb", "bbb"], ["ccc", "ccc"]]))
-  )
-
-  end()
-})
-
-test(({throws, end}) => {
-  throws(
-      () => attach({aaa: "aaa"})("aaa")(new WeakMap([[{bbb: "bbb"}, "bbb"], [{ccc: "ccc"}, "ccc"]]))
+test(({same, end}) => {
+  same(
+    attach("aaa")("aaa")(new Map([["bbb", "bbb"], ["ccc", "ccc"]])),
+    new Map([["aaa", "aaa"], ["bbb", "bbb"], ["ccc", "ccc"]])
   )
 
   end()

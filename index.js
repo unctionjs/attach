@@ -24,7 +24,10 @@ export default function attach (key: any): Function {
           return `${functor.slice(BEGINNING, key)}${value}${functor.slice(key)}`
         }
         case "Map": {
-          throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
+          return new Map([
+            ...functor,
+            [key, value],
+          ])
         }
         default: {
           throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
