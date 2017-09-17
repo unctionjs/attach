@@ -87,6 +87,15 @@ test(({same, end}) => {
   end()
 })
 
+test(({same, end}) => {
+  same(
+    attach(1)("a")(new Set(["b"])),
+    new Set(["b", "a"])
+  )
+
+  end()
+})
+
 test(({throws, end}) => {
   throws(
       () => attach({aaa: "aaa"})("aaa")(1)
