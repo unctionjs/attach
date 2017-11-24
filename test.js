@@ -1,5 +1,7 @@
 /* eslint-disable flowtype/require-parameter-type, flowtype/require-return-type, no-magic-numbers */
 import {test} from "tap"
+import xstream from "xstream"
+import streamSatisfies from "@unction/streamSatisfies"
 
 import attach from "./index"
 
@@ -94,6 +96,22 @@ test(({same, end}) => {
   )
 
   end()
+})
+
+test(({equal, end}) => {
+  streamSatisfies(
+    "'a'---'b'---|"
+  )(
+    (given) => (expected) => equal(given, expected)
+  )(
+    ({length}) =>
+      (position) => {
+        equal(length, position)
+        end()
+      }
+  )(
+    attach(null)("b")(xstream.of("a"))
+  )
 })
 
 test(({throws, end}) => {
