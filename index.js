@@ -29,9 +29,11 @@ export default function attach (key: KeyType | null): UnaryFunctionType {
         case "Set": {
           return new Set([...functor, value])
         }
-        case "Stream":
-        case "MemoryStream": {
+        case "Stream": {
           return xstream.merge(functor, xstream.of(value))
+        }
+        case "MemoryStream": {
+          return xstream.merge(functor, xstream.of(value)).remember()
         }
         default: {
           throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
