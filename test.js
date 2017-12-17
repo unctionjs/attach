@@ -1,11 +1,11 @@
 /* eslint-disable flowtype/require-parameter-type, flowtype/require-return-type, no-magic-numbers */
 import {test} from "tap"
 import xstream from "xstream"
-import streamSatisfies from "@unction/streamSatisfies"
+import streamSatisfies from "@unction/streamsatisfies"
 
 import attach from "./index"
 
-test(({same, end}) => {
+test("Object (Empty)", ({same, end}) => {
   same(
     attach("hello")("world")({}),
     {hello: "world"}
@@ -14,7 +14,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Object (Filled)", ({same, end}) => {
   same(
     attach("hello")("world")({test: "case"}),
     {
@@ -26,7 +26,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Array (First)", ({same, end}) => {
   same(
     attach(0)("a")([]),
     ["a"]
@@ -35,7 +35,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Array (Too big index)", ({same, end}) => {
   same(
     attach(1)("a")([]),
     ["a"]
@@ -44,7 +44,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Array (Last)", ({same, end}) => {
   same(
     attach(1)("a")(["b"]),
     ["b", "a"]
@@ -53,7 +53,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Array (Middle)", ({same, end}) => {
   same(
     attach(1)("a")(["b", "c"]),
     ["b", "a", "c"]
@@ -62,7 +62,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("String (First)", ({same, end}) => {
   same(
     attach(0)("a")("bc"),
     "abc"
@@ -71,7 +71,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("String (last)", ({same, end}) => {
   same(
     attach(1)("a")(""),
     "a"
@@ -80,7 +80,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Map", ({same, end}) => {
   same(
     attach("aaa")("aaa")(new Map([["bbb", "bbb"], ["ccc", "ccc"]])),
     new Map([["aaa", "aaa"], ["bbb", "bbb"], ["ccc", "ccc"]])
@@ -89,7 +89,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({same, end}) => {
+test("Set", ({same, end}) => {
   same(
     attach(1)("a")(new Set(["b"])),
     new Set(["b", "a"])
@@ -98,7 +98,7 @@ test(({same, end}) => {
   end()
 })
 
-test(({equal, end}) => {
+test("Stream", ({equal, end}) => {
   streamSatisfies(
     "'a'---'b'---|"
   )(
@@ -114,9 +114,25 @@ test(({equal, end}) => {
   )
 })
 
+test("MemoryStream", ({equal, end}) => {
+  streamSatisfies(
+    "'a'---'b'---'c'---|"
+  )(
+    (given) => (expected) => equal(given, expected)
+  )(
+    ({length}) =>
+      (position) => {
+        equal(length, position)
+        end()
+      }
+  )(
+    attach(null)("c")(xstream.of("b").startWith("a"))
+  )
+})
+
 test(({throws, end}) => {
   throws(
-      () => attach({aaa: "aaa"})("aaa")(1)
+    () => attach({aaa: "aaa"})("aaa")(1)
   )
 
   end()
