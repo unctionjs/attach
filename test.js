@@ -1,6 +1,6 @@
 /* eslint-disable flowtype/require-parameter-type, flowtype/require-return-type, no-magic-numbers */
 import {test} from "tap"
-import xstream from "xstream"
+import {of} from "most"
 import streamSatisfies from "@unction/streamsatisfies"
 
 import attach from "./index"
@@ -98,27 +98,13 @@ test("Set", ({same, end}) => {
   end()
 })
 
-test("Stream", ({equal, end}) => {
+test("Stream", ({equal, doesNotThrow, end}) => {
   streamSatisfies(
     "'a'---'b'---|"
   )(
     (given) => (expected) => equal(given, expected)
   )(
-    ({length}) =>
-      (position) => {
-        equal(length, position)
-        end()
-      }
-  )(
-    attach(null)("b")(xstream.of("a"))
-  )
-})
-
-test("MemoryStream", ({equal, end}) => {
-  streamSatisfies(
-    "'a'---'b'---'c'---|"
-  )(
-    (given) => (expected) => equal(given, expected)
+    doesNotThrow
   )(
     ({length}) =>
       (position) => {
@@ -126,7 +112,7 @@ test("MemoryStream", ({equal, end}) => {
         end()
       }
   )(
-    attach(null)("c")(xstream.of("b").startWith("a"))
+    attach(null)("b")(of("a"))
   )
 })
 

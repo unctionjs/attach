@@ -1,4 +1,5 @@
-import xstream from "xstream"
+import {merge} from "most"
+import {of} from "most"
 import type from "@unction/type"
 
 const BEGINNING: Integer = 0
@@ -30,10 +31,7 @@ export default function attach (key: KeyType | null): UnaryFunctionType {
           return new Set([...functor, value])
         }
         case "Stream": {
-          return xstream.merge(functor, xstream.of(value))
-        }
-        case "MemoryStream": {
-          return xstream.merge(functor, xstream.of(value)).remember()
+          return merge(functor, of(value))
         }
         default: {
           throw new Error(`attach doesn't know how to set a key and value on ${type(functor)}`)
