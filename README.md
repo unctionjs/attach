@@ -19,7 +19,7 @@ attach(1)("x")([1, 2, 3]) // => [1, "x", 2, 3]
 attach(null)("x")(new Set([1, 2, 3])) // => {1 2 3 "x"}
 attach(10)("x")([]) // => ["x"]
 attach(0)("a")("bc") // => "abc"
-attach(null)("a")(xstream.of("b")) // => a---b--->
+attach(null)("a")(xstream.of("b")) // => a---b--=>
 ```
 
 [BADGE_TRAVIS]: https://img.shields.io/travis/unctionjs/attach.svg?maxAge=2592000&style=flat-square
