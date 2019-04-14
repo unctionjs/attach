@@ -17,7 +17,7 @@
   "homepage": "https://github.com/unctionjs/attach#readme",
   "repository": "github:unctionjs/attach",
   "bugs": "https://github.com/unctionjs/attach/issues",
-  "main": "transpiled/main.js",
+  "main": "main.js",
   "nyc": {
     "require": [
       "@babel/register"
@@ -70,5 +70,5 @@
     "browser.js.map"
   ],
   "module": "index.js",
-  "browser": "transpiled/browser.js"
+  "browser": "browser.js"
 }
