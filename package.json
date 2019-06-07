@@ -1,6 +1,6 @@
 {
   "name": "@unction/attach",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "A polymorphic way to attach a value to the key on a keyed iterable",
   "keywords": [
     "unction",
