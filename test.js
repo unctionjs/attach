@@ -3,7 +3,7 @@ import {test} from "tap";
 import {of} from "most";
 import streamSatisfies from "@unction/streamsatisfies";
 
-import attach from "./index";
+import attach from "./";
 
 test("Object (Empty)", ({same, end}) => {
   same(
