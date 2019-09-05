@@ -4,13 +4,14 @@
 ![Stability][BADGE_STABILITY]
 ![Dependencies][BADGE_DEPENDENCY]
 
+> A => B => EnumerableType<B, A> => EnumerableType<B, A>
 > ObjectKeyType => ValueType => ObjectType => ObjectType
 > MapKeyType => ValueType => MapType => MapType
 > ArrayKeyType => ValueType => ArrayType => ArrayType
 > null => ValueType => SetType => SetType
 > null => ValueType => StreamType => StreamType
 
-A polymorphic way to attach a value to the key on a keyed functor. When dealing with a sorted list type and the key is larger than the list, it will append to the list. When the key is an index that already exists it will place the value at that index and shift remaining values to the right.
+A polymorphic way to attach a value to the key on a keyed enumerator. When dealing with a sorted list type and the key is larger than the list, it will append to the list. When the key is an index that already exists it will place the value at that index and shift remaining values to the right.
 
 ``` javascript
 attach("hello")("world")({}) // => {hello: "world"}
