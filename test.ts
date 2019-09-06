@@ -65,6 +65,6 @@ test("Stream", done => {
   );
 });
 
-test(() => {
+test("works", () => {
   expect(() => attach({aaa: "aaa"})("aaa")(1)).toThrow();
 });
