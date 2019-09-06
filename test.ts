@@ -2,7 +2,7 @@
 import { of } from "most";
 import streamSatisfies from "@unction/streamsatisfies";
 
-import attach from "./index.ts";
+import attach from "./index";
 
 test("Object (Empty)", () => {
   expect(attach("hello")("world")({})).toEqual({hello: "world"});
