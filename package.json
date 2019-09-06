@@ -54,7 +54,7 @@
     "typescript": "3.5.1"
   },
   "dependencies": {
-    "@unction/type": "4.2.1",
+    "@unction/type": "5.0.0",
     "most": "1.7.2"
   },
   "files": [
