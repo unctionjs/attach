@@ -1,7 +1,6 @@
 import {merge} from "most";
 import {of} from "most";
 import type from "@unction/type";
-import {EnumerableType} from "./types";
 
 const BEGINNING = 0;
 
