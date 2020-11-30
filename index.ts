@@ -6,7 +6,7 @@ const BEGINNING = 0;
 
 export default function attach<A, B> (key: A) {
   return function attachKey (value: B) {
-    return function attachKeyValue (enumerable: EnumerableType<B, A>): EnumerableType<B, A> {
+    return function attachKeyValue (enumerable: Record<string | number | symbol, B> | Map<A, B>): Record<string | number | symbol, B> | Map<A, B> {
       switch (type(enumerable)) {
         case "Object": {
           return {

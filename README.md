@@ -4,7 +4,7 @@
 ![Stability][BADGE_STABILITY]
 ![Dependencies][BADGE_DEPENDENCY]
 
-> A => B => EnumerableType<B, A> => EnumerableType<B, A>
+> A => B => Record<string | number | symbol, B> | Map<A, B> => Record<string | number | symbol, B> | Map<A, B>
 > ObjectKeyType => ValueType => ObjectType => ObjectType
 > MapKeyType => ValueType => MapType => MapType
 > ArrayKeyType => ValueType => ArrayType => ArrayType
